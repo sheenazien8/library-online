@@ -13,23 +13,10 @@
           <div class="card">
             <div class="card-header">
               Writers
+              <a href="{{ route('authors.create') }}" class="btn btn-primary float-right">+ Add</a>
             </div>
 
             <div class="card-body">
-              {{-- cara biasa
-              <table class="table table-bordered">
-                <tr>
-                  <th>No</th>
-                  <th>Writers Name</th>
-                </tr>
-                @foreach ($authors as $key => $author)
-                  <tr>
-                  <td>{{$key+1}}</td>
-                  <td>{{$author->name}}</td>
-                  </tr>
-                @endforeach
-              </table>--}}
-
               <!-- cara dataTables -->
               {!! $html->table((['class' => 'table-striped'])) !!}
             </div>

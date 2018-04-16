@@ -26,4 +26,8 @@ class AuthorsController extends Controller
     ]);
     return view('authors.index', compact('html'));
   }
+  public function create()
+  {
+    return view('authors.create');
+  }
 }
