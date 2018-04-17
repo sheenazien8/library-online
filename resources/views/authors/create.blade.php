@@ -18,7 +18,7 @@
               Add Writers
               <a href="{{ route('authors.create') }}" class="btn btn-primary float-right">+ Add</a>
             </div>
-
+            
             <div class="card-body">
               <form class="form-horizontal" action="{{ route('authors.store') }}" method="post">
                 @csrf
@@ -26,9 +26,15 @@
                 <div class="form-group">
                   <div class="col-md-4">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Writer Name">
+                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" placeholder="Writer Name" value="{{old('name')}}" autofocus>
+                    @if ($errors->has('name'))
+                      <span class="invalid-feedback">
+                        <strong>{{$errors->first('name')}}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="col-md-4 col-md-offset-2">
                     <button type="submit" class="btn btn-primary">Save!</button>
