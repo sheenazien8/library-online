@@ -18,14 +18,23 @@ class AuthorsController extends Controller
 
     //cara DataTables
     if ($request->ajax()) {
+
       $authors = Author::all();
 
-      return DataTables::of($authors)->toJson();
+      return DataTables::of($authors)->addColumn('action', function ($author){
+        return view('datatable._action',[
+           'edit_url' => route('authors.edit', $author->id),
+
+        ]);
+      })->toJson();
     }
 
     $html = $htmlBuilder->columns([
-      ['data' => 'name', 'name' => 'name', 'title' => 'Nama']
+      ['data' => 'name', 'name' => 'name', 'title' => 'Nama'],
+      ['data' => 'action', 'name' => 'action', 'title' => 'Action',
+      'orderable' => false, 'searchable' => false],
     ]);
+
     return view('authors.index', compact('html'));
   }
 
@@ -52,10 +61,30 @@ class AuthorsController extends Controller
     //   'message' => 'Berhasil menyimpan nama penulis' . $author->neme,
     // ]);
       return redirect()->route('authors.index')->with('flash_notification',[
-        'level' => 'succes',
-        'message' => 'Berhasil menyimpan nama penulis' . $author->neme,
+        'level' => 'secondary',
+        'message' => 'Berhasil menyimpan nama penulis dengan nama ' . $author->name,
         ]);
 
     return redirect()->route('authors.index');
   }
+  // using databinding
+  public function show(Author $author)
+  {
+
+    return view('authors.show', compact('author'));
+  //cara biasa
+  // public function show($id)
+  // {
+  //   $author = Author::findOrFile($id);
+
+  //   return view('authors.show', compact('author'));
+
+  }
+
+  public function edit(Author $author)
+  {
+
+   return view('authors.edit', compact('author'));
+  }
+
 }
