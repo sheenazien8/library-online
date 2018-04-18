@@ -18,7 +18,7 @@
 
             <div class="card-body">
               <!-- cara dataTables -->
-              {!! $html->table((['class' => 'table-striped'])) !!}
+              {!! $html->table((['class' => 'table-bordered'])) !!}
             </div>
           </div>
         </div>

@@ -19,21 +19,11 @@
             </div>
             
             <div class="card-body">
-              <form class="form-horizontal" action="{{ route('authors.store') }}" method="post">
+              <form class="form-horizontal" action="{{ route('authors.update', $author->id) }}" method="post">
                 @csrf
-                @methode('PATCH')
+                @method('PATCH')
 
-                <div class="form-group">
-                  <div class="col-md-4">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" value="{{ $author->name }}" autofocus>
-                    @if ($errors->has('name'))
-                      <span class="invalid-feedback">
-                        <strong>{{$errors->first('name')}}</strong>
-                      </span>
-                    @endif
-                  </div>
-                </div>
+                @include('authors._form')
 
                 <div class="form-group">
                   <div class="col-md-4 col-md-offset-2">

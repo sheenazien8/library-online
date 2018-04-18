@@ -21,17 +21,19 @@ class AuthorsController extends Controller
 
       $authors = Author::all();
 
-      return DataTables::of($authors)->addColumn('action', function ($author){
-        return view('datatable._action',[
-           'edit_url' => route('authors.edit', $author->id),
-
-        ]);
-      })->toJson();
+      return DataTables::of($authors)
+        ->addColumn('action', function ($author){
+          return view('datatable._action',[
+            'author_id' => $author->id,
+            'edit_url' => route('authors.edit', $author->id),
+            'detail_url' => route('authors.show', $author->id),
+          ]);
+        })->toJson();
     }
 
     $html = $htmlBuilder->columns([
       ['data' => 'name', 'name' => 'name', 'title' => 'Nama'],
-      ['data' => 'action', 'name' => 'action', 'title' => 'Action',
+      ['data' => 'action', 'name' => 'action', 'title' => '',
       'orderable' => false, 'searchable' => false],
     ]);
 
@@ -63,7 +65,7 @@ class AuthorsController extends Controller
       return redirect()->route('authors.index')->with('flash_notification',[
         'level' => 'secondary',
         'message' => 'Berhasil menyimpan nama penulis dengan nama ' . $author->name,
-        ]);
+      ]);
 
     return redirect()->route('authors.index');
   }
@@ -85,6 +87,36 @@ class AuthorsController extends Controller
   {
 
    return view('authors.edit', compact('author'));
+  }
+
+  public function update(Request $request, Author $author)
+  {
+    $request->validate([
+      'name' => 'required|unique:authors,name,' . $author->id
+    ],
+    [
+      'name.required' =>'Harus diisi nggak boleh kosong',
+      'name.unique' => 'Nama yang di masukkan sudah ada di database'
+    ]
+    );
+
+    $author->update($request->only('name'));
+
+    return redirect()->route('authors.index')->with('flash_notification',[
+        'level' => 'success',
+        'message' => 'Berhasil menyimpan nama penulis dengan nama ' .'<strong class = "text-primary">'. $author->name.'</strong>',
+    ]);
+
+  }
+
+  public function destroy(Author $author)
+  {
+    $author->delete();
+
+    return redirect()->route('authors.index')->with('flash_notification',[
+     'level' => 'secondary',
+     'message' => '<strong class="text-primary">' . $author->name .'</strong> Berhasil dihapus'
+    ]);;
   }
 
 }
