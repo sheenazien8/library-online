@@ -111,12 +111,15 @@ class AuthorsController extends Controller
 
   public function destroy(Author $author)
   {
-    $author->delete();
+    if (!$author->delete()) {
+      return redirect()->back();
+    }
 
     return redirect()->route('authors.index')->with('flash_notification',[
      'level' => 'secondary',
      'message' => '<strong class="text-primary">' . $author->name .'</strong> Berhasil dihapus'
     ]);;
   }
+
 
 }
