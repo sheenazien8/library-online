@@ -27,6 +27,7 @@ class AuthorsController extends Controller
             'author_id' => $author->id,
             'edit_url' => route('authors.edit', $author->id),
             'detail_url' => route('authors.show', $author->id),
+            'confirm_message' => 'Yakin akan menghapus '.$author->name.'?',
           ]);
         })->toJson();
     }
@@ -111,6 +112,7 @@ class AuthorsController extends Controller
 
   public function destroy(Author $author)
   {
+    //check jika tidak bisa di hapus maka kembali ke halamannya
     if (!$author->delete()) {
       return redirect()->back();
     }

@@ -39,5 +39,6 @@ class BooksSeeder extends Seeder
       'ammount' => 46,
       'author_id' => $author3->id
     ]);
+
   }
 }
