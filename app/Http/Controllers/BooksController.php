@@ -87,7 +87,7 @@ class BooksController extends Controller
 
     return redirect()->route('books.index')->with('flash_notification',[
       'level' => 'success',
-      'message' => "Berhasil menyimpan buku dengan judul <strong class='text-primary'>".$book->title."</strong>"
+      'message' => "Berhasil menyimpan buku dengan judul <strong class='  text-primary'>".$book->title."</strong>"
     ]);
   }
 
@@ -144,10 +144,8 @@ class BooksController extends Controller
         } catch (FileNotFoundException $e) {
 
         }
-
         $book->cover = $fileName;
         $book->save();
-
       }
     }
 
@@ -168,6 +166,17 @@ class BooksController extends Controller
     if (!$book->delete()) {
       return redirect()->back();
     }
+
+    if ($book->cover) {
+        $oldImage = $book->cover;
+        $filePath = public_path() . DIRECTORY_SEPARATOR . 'cover' . DIRECTORY_SEPARATOR .$book->cover;
+
+          try {
+            File::delete($filePath);
+          } catch (FileNotFoundException $e) {
+
+        }
+      }
 
     return redirect()->route('books.index')->with('flash_notification',[
      'level' => 'secondary',
