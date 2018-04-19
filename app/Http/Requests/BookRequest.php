@@ -34,10 +34,14 @@ class BookRequest extends FormRequest
             'cover' => 'image|max:2048'
           ];
         break;
+
        case 'PUT' :
        case'PATCH':
            return [
-
+            'title' => 'required|unique:books,title,'. $this->route('book.id'),
+            'author_id' => 'required|exists:authors,id',
+            'ammount' => 'required|numeric',
+            'cover' => 'image|max:2048'
            ];
          break;
 
