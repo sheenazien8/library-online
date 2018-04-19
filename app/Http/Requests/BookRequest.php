@@ -26,13 +26,16 @@ class BookRequest extends FormRequest
     switch ($this->method()) {
       case 'POST':
           return[
+            //didalam table books dalam column title harus beda
             'title' => 'required|unique:books,title',
+            //didalam table authors harus sudah ada id author untuk di masukkan kedalam table book
             'author_id' => 'required|exists:authors,id',
             'ammount' => 'required|numeric',
             'cover' => 'image|max:2048'
           ];
         break;
-       case 'PUT/PATCH':
+       case 'PUT' :
+       case'PATCH':
            return [
 
            ];
