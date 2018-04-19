@@ -1,5 +1,5 @@
 <div class="form-group">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <label for="name">Name</label>
     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" id="name" name="name" value="@if (Route::is('authors.edit')) {{ $author->name }} @else {{ old('name') }} 
     @endif" autofocus>

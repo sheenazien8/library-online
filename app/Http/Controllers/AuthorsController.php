@@ -24,9 +24,9 @@ class AuthorsController extends Controller
       return DataTables::of($authors)
         ->addColumn('action', function ($author){
           return view('datatable._action',[
-            'author_id' => $author->id,
             'edit_url' => route('authors.edit', $author->id),
             'detail_url' => route('authors.show', $author->id),
+            'delete_url' => route('authors.destroy', $author->id),
             'confirm_message' => 'Yakin akan menghapus '.$author->name.'?',
           ]);
         })->toJson();
@@ -34,8 +34,7 @@ class AuthorsController extends Controller
 
     $html = $htmlBuilder->columns([
       ['data' => 'name', 'name' => 'name', 'title' => 'Nama'],
-      ['data' => 'action', 'name' => 'action', 'title' => '',
-      'orderable' => false, 'searchable' => false],
+      ['data' => 'action', 'name' => 'action', 'title' => '','orderable' => false, 'searchable' => false],
     ]);
 
     return view('authors.index', compact('html'));

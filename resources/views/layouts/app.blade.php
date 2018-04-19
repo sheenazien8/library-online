@@ -42,6 +42,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('authors.index')}}">Writers</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('books.index')}}">Books</a>
+                  </li>
                 @endrole
               @endif
             </ul>
@@ -89,6 +92,6 @@
     <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
 
-    @yield('scripts')
+    @stack('scripts')
 </body>
 </html>
