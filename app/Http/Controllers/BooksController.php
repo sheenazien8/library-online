@@ -135,10 +135,12 @@ class BooksController extends Controller
 
       $uploadedImage->move($destinationPath,$fileName);
 
+      //hapus file lama ganti dengan file baru
       if ($book->cover) {
         $oldImage = $book->cover;
         $filePath = public_path() . DIRECTORY_SEPARATOR . 'cover' . DIRECTORY_SEPARATOR .$book->cover;
 
+        // coba menghapus
         try {
           File::delete($filePath);
         } catch (FileNotFoundException $e) {
@@ -167,7 +169,7 @@ class BooksController extends Controller
       return redirect()->back();
     }
 
-    if ($book->cover) {
+    if  ($book->cover) {
         $oldImage = $book->cover;
         $filePath = public_path() . DIRECTORY_SEPARATOR . 'cover' . DIRECTORY_SEPARATOR .$book->cover;
 

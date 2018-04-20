@@ -83,7 +83,14 @@
       @include('layouts._message')
       @yield('content')
     </main>
+    <div class="container">
+      <div class="card-footer text-muted">
+        &copy copyright 2018
+      </div>
+    </div>
   </div>
+  
+
   <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}" ></script>
