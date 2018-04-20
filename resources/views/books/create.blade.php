@@ -39,7 +39,7 @@
                 <div class="form-group">
                   <div class="col-md-6">
                     <label for="author_id">Writers</label>
-                      <select class="form-control {{$errors->has('author_id') ? 'is-invalid' : ''}} " name="author_id" id="author_id">
+                      <select class="custom-select form-control js-selectize {{$errors->has('author_id') ? 'is-invalid' : ''}} " name="author_id" id="author_id">
                         <option>-- Choose Writers --</option>
                           @foreach ($authors as $author)
                             <option value="{{ $author->id }}">{{ $author->name }}</option>
@@ -84,7 +84,6 @@
         </div>
     </div>
 </div>
-@endsection
-@section('scripts')
+
 
 @endsection

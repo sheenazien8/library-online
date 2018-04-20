@@ -14,6 +14,7 @@
   <link href="https://fonts.googleap is.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
   <!-- Styles -->
+  <link href="{{ asset('css/selectize.bootstrap4.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/jquery.dataTables.css') }}" rel="stylesheet">
   <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -93,6 +94,7 @@
 
   <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/selectize.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}" ></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
