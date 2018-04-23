@@ -16,7 +16,6 @@ use App\Exceptions\BookExceptions;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 
-
 class BooksController extends Controller
 {
 
