@@ -17,7 +17,7 @@
                     </div>                  
                 </div>
                 <div class="card-body">
-                {!! $html->table([ 'class' => 'table-striped ']) !!}
+                {!! $html->table([ 'class' => 'table-bordered ']) !!}
                 
                 </div>
             </div>

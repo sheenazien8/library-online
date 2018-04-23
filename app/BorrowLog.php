@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class BorrowLog extends Model
 {
 	protected $fillable=[
@@ -23,5 +24,14 @@ class BorrowLog extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class);;
+	}
+
+	public function scopeReturned($query)
+	{
+		return $query->where('is_returned',1);
+	}
+	public static function scopeBorrowed($query)
+	{
+		return $query->where('is_returned', 0);
 	}
 }

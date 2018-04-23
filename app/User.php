@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\BorrowLog;
+use App\Book;
+use App\Exceptions\BookExceptions;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
@@ -29,10 +32,15 @@ class User extends Authenticatable
       'password', 'remember_token',
   ];
 
+  function borrowLogs()
+  {
+    return $this->hasMany(BorrowLog::class);
+  }
+
   public function borrow(Book $book)
   {
     if ($this->borrowLogs()->where('book_id', $book->id)->where('is_returned', 0)->count() > 0) {
-      throw new BookException('Buku'.$book->title .' sedang anda pinjam!');
+      throw new BookExceptions('Buku '.$book->title .' sedang anda pinjam!');
     }
 
     return BorrowLog::create([

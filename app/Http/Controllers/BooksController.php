@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Filesystem\Illuminate;
+use App\Exceptions\BookExceptions;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+
+
 
 class BooksController extends Controller
 {
@@ -212,7 +216,7 @@ class BooksController extends Controller
         'level' => 'danger',
         'message' => 'Book not found',
       ]);
-    } catch(BookException $e){
+    } catch(BookExceptions $e){
       Session::flash('flash_notification',[
         'level' => 'danger',
         'message' => $e->getMessage(),
