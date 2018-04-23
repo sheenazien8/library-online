@@ -21,12 +21,15 @@ class GuestController extends Controller
                         return '';
                     }
                     return '<a href=" '.route('guest.books.borrow', $book->id).' " class="btn btn-secondary"> Borrow </a>';
-                })->toJson();
+                })
+               ->addColumn('stock', function($book){
+                   return $book->stock;
+               })->toJson();
 
         }
         $html = $builder->columns([
             ['data' => 'title', 'name' => 'title', 'title' => 'Books of Title' ],
-            ['data' => 'ammount', 'name' => 'ammount', 'title' => 'Amount of Books' ],
+            ['data' => 'stock', 'name' => 'stock', 'title' => 'Stock of Books' ],
             ['data' => 'author.name', 'name' => 'author.name', 'title' => 'Authors' ],
             ['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false ],
         ]);

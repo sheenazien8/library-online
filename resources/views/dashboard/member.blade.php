@@ -37,7 +37,7 @@
                         <form class="form-inline js-confirm float-right" action="{{ route('member.books.return', $log->book->id) }}" method="POST" data-confirm="Apakah anda yakin ingin mengembalikan buku {{ $log->book->title }}">
                         @csrf
                         @method('PATCH')
-                        <button class="btn btn-primary " type="submit">Kembalikan</button>
+                        <button class="btn btn-primary " type="submit">Return It</button>
                       </td>
                     </tr>
 

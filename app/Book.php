@@ -14,4 +14,18 @@ class Book extends Model
   {
     return $this->belongsTo(Author::class);
   }
+
+  public function borrowLogs()
+  {
+  	return $this->hasMany(BorrowLog::class);
+  }
+
+  public function getStockAttribute()
+  {
+  	$borrowed = $this->borrowLogs()->borrowed()->count();
+
+  	$stock = $this->ammount - $borrowed;
+
+  	return $stock;
+  }
 }
