@@ -14,7 +14,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                Welcome Admin!!
+                    Welcome {{ Auth::user()->name }} !!
                 </div>
             </div>
         </div>

@@ -10,18 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GuestController@index');
+Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guest.books.borrow');
+Route::patch('/books/{book}/return', 'BooksController@return')->name('member.books.return');
 
 Auth::routes();
 
-Route::get('/', 'GuestController@index');
-Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guest.books.borrow');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('authors/show{author}', 'HomeController@show')->name('show');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function(){
   Route::resource('authors', 'AuthorsController');
