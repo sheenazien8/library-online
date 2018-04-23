@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Author;
+use App\User;
 use App\Book;
+use App\Author;
+use App\BorrowLog;
+use Illuminate\Database\Seeder;
+
 
 class BooksSeeder extends Seeder
 {
@@ -38,6 +41,27 @@ class BooksSeeder extends Seeder
       'title' => 'Sherlock homes',
       'ammount' => 46,
       'author_id' => $author3->id
+    ]);
+
+    //buat contoh peminjaman buku
+    $member = User::where('email', 'member@gmail.com')->first();
+
+    BorrowLog::create([
+      'user_id' => $member->id,
+      'book_id' => $book1->id,
+      'is_returned' => 0
+    ]);
+
+    BorrowLog::create([
+      'user_id' => $member->id,
+      'book_id' => $book2->id,
+      'is_returned' => 0
+     ]);
+
+    BorrowLog::create([
+      'user_id' => $member->id,
+      'book_id' => $book3->id,
+      'is_returned' => 1
     ]);
 
   }

@@ -22,10 +22,9 @@
             <div class="card-body">
               Judul : <strong>{{ ' '.$book->title }}</strong>
             </div>
-
-            {{-- <div class="card-body">
-              Judul : <strong>{{ ' '.$title }}</strong>
-            </div> --}}
+            <div class="card-body"> 
+              Writers : {{ $book->author->name }}
+            </div>
 
             <div class="card-body">
               Book Amount : <strong>{{ ' '.$book->ammount }}</strong> {{ ' Halaman' }}
