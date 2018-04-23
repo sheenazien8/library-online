@@ -67,7 +67,6 @@
                     <label for="ammount">Book Amount</label>
                     <input type="text" class="form-control {{$errors->has('ammount') ? 'is-invalid' : ''}}" id="ammount" name="ammount" placeholder="Book Amount" value="{{ $book->ammount }}" >
 
-
                     @if ($errors->has('ammount'))
                       <span class="invalid-feedback">
                         <strong>{{$errors->first('ammount')}}</strong>
@@ -75,6 +74,7 @@
                     @endif
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="col-md-6">
                     <label for="cover">Book Cover</label>
