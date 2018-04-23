@@ -1,17 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\File;
 use App\Author;
 use App\Book;
+use App\BorrowLog;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\BookRequest;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Filesystem\Illuminate;
 
 class BooksController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware(['auth', 'role:member'])->only(['borrow']);
+  }
   /**
    * Display a listing of the resource.
    *
@@ -99,7 +107,7 @@ class BooksController extends Controller
    */
   public function show(Book $book)
   {
-    return view('books.show', compact('book','authors'));
+    return view('books.show', compact('book'));
   }
 
   /**
@@ -180,9 +188,36 @@ class BooksController extends Controller
         }
       }
 
+    if ($book->delete()) {
+      return redirect()->back();
+    }
+
     return redirect()->route('books.index')->with('flash_notification',[
      'level' => 'secondary',
      'message' => '<strong class="text-primary">' . $book->title .'</strong> Berhasil dihapus'
     ]);;
+  }
+
+  public function borrow(Book $book)
+  {
+    try {
+      auth()->user()->borrow($book);
+
+      Session::flash('flash_notification', [
+        'level' => 'success',
+        'message' => 'Berhasil menyimpan buku '.$book->name,
+      ]);
+    } catch (Exception $e) {
+      Session::flash('flash_notification', [
+        'level' => 'danger',
+        'message' => 'Book not found',
+      ]);
+    } catch(BookException $e){
+      Session::flash('flash_notification',[
+        'level' => 'danger',
+        'message' => $e->getMessage(),
+      ]);
+    }
+    return redirect('/');
   }
 }

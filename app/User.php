@@ -28,4 +28,16 @@ class User extends Authenticatable
   protected $hidden = [
       'password', 'remember_token',
   ];
+
+  public function borrow(Book $book)
+  {
+    if ($this->borrowLogs()->where('book_id', $book->id)->where('is_returned', 0)->count() > 0) {
+      throw new BookException('Buku'.$book->title .' sedang anda pinjam!');
+    }
+
+    return BorrowLog::create([
+      'user_id' => auth()->user()->id,
+      'book_id' => $book->id,
+    ]);
+  }
 }

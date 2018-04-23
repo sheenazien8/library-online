@@ -17,9 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', 'GuestController@index');
+Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guest.books.borrow');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('authors/show{author}', 'HomeController@show')->name('show');
-
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function(){
   Route::resource('authors', 'AuthorsController');
