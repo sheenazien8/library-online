@@ -122,6 +122,7 @@ class BooksController extends Controller
   public function edit(Book $book)
   {
     $authors = Author::all();
+
     return view('books.edit' , compact('book' , 'authors'));
   }
 

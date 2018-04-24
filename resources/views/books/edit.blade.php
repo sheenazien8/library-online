@@ -65,7 +65,13 @@
                 <div class="form-group">
                   <div class="col-md-6">
                     <label for="ammount">Book Amount</label>
-                    <input type="text" class="form-control {{$errors->has('ammount') ? 'is-invalid' : ''}}" id="ammount" name="ammount" placeholder="Book Amount" value="{{ $book->ammount }}" >
+                    <input type="text" class="form-control {{$errors->has('ammount') ? 'is-invalid' : ''}} " id="ammount" name="ammount" placeholder="Book Amount" value="{{ $book->ammount }}" >
+
+                    @if (isset($book))
+                    <div class="text-danger">
+                      <p class="text-capitalize">tersedia di perpustakaan {{ $book->stock }} dan yang dipinjam {{ $book->borrowed }}</p>
+                    </div>
+                    @endif
 
                     @if ($errors->has('ammount'))
                       <span class="invalid-feedback">
