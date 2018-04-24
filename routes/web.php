@@ -13,6 +13,7 @@
 Route::get('/', 'GuestController@index');
 Route::get('/books/{book}/borrow', 'BooksController@borrow')->name('guest.books.borrow');
 Route::patch('/books/{book}/return', 'BooksController@return')->name('member.books.return');
+Route::get('/refresh-captcha', 'Auth\RegisterController@refreshCaptcha');
 
 Auth::routes();
 
