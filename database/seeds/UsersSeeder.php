@@ -29,7 +29,8 @@ class UsersSeeder extends Seeder
     $adminUser = User::create([
       'name' => 'Admin Library',
       'email' => 'admin@gmail.com',
-      'password' => bcrypt('8slamp')
+      'password' => bcrypt('8slamp'),
+      'is_verified' => 1
     ]);
 
     $adminUser->attachRole($roleAdmin);
@@ -38,7 +39,8 @@ class UsersSeeder extends Seeder
     $memberUser = User::create([
       'name' => 'Member Library',
       'email' => 'member@gmail.com',
-      'password' => bcrypt('8slamp')
+      'password' => bcrypt('8slamp'),
+      'is_verified' => 1,
     ]);
 
     $memberUser->attachRole($roleMember);
