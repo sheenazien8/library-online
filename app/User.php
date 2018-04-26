@@ -61,7 +61,7 @@ class User extends Authenticatable
 
   public function sendEmailVerification()
   {
-    $this->generateVerificationCode();
+    $token = $this->generateVerificationCode();
 
     $user = $this;
 
