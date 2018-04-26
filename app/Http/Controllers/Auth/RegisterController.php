@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use Session;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -79,6 +81,8 @@ class RegisterController extends Controller
 
       $user->attachRole($memberUser);
 
+      $user->sendEmailVerification();
+
       return $user;
   }
 
@@ -86,4 +90,41 @@ class RegisterController extends Controller
   {
     return response()->json(['captcha' => captcha_img()]);
   }
+
+  public function verify(Request $request, $token)
+  {
+    $email = $request->email;
+    $user = User::where('verification_token', $token)->where('email', $email)->first();
+
+    if ($user) {
+      $user->verify();
+
+      Session::flash('flash_notification',[
+          'level' => 'success',
+          'message' => "Berhasil melakukan verifikasi"
+         ]);
+        auth()->login($user);
+    }
+
+    return redirect('/');
+  }
+
+  public function resendVerification(Request $request)
+  {
+    $email = $request->email;
+    $user = User::where('email', $email)->first();
+
+    if ($user && !$user->is_verified) {
+      $user->sendEmailVerification();
+
+      Session::flash('flash_notification',[
+          'level' => 'success',
+          'message' => "Silahkan klik link aktifasi yang telah kami kirim ke email anda"
+         ]);
+        auth()->login($user);
+    }
+
+    return redirect('/login');
+  }
+
 }
