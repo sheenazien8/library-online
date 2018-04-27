@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Mail\SendVerification;
 use App\BorrowLog;
 use App\Book;
 use Illuminate\Support\Facades\Mail;
@@ -65,9 +65,7 @@ class User extends Authenticatable
 
     $user = $this;
 
-    Mail::send('auth.emails.verification', compact('user','token'), function($m) use ($user){
-      $m->to($user->email,$user->name)->subject('verifikasi akun perpustakaan');
-    });
+    Mail::to($user)->send(new SendVerification($user));
   }
 
   public function generateVerificationCode()

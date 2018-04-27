@@ -1,3 +1,12 @@
-Klik link di bawah ini untuk verifikasi
+@component('mail::message')
+# Halo {{ $user->name }}
 
-<a href="{{ $link = url('auth/verify', $token) .'?email='. urlencode($user->email) }}">{{ $link }}</a>
+Klik tombol di bawah ini untuk verifikasi
+
+@component('mail::button', ['url' => url('auth/verify', $user->verification_token).'?email='.urlencode($user->email)])
+Verifikasi
+@endcomponent
+
+Salam,<br>
+{{ config('app.name') }}
+@endcomponent
