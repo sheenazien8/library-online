@@ -23,10 +23,14 @@ Route::patch('/books/{book}/return', 'BooksController@return')->name('member.boo
 // captcha
 Route::get('/refresh-captcha', 'Auth\RegisterController@refreshCaptcha');
 
-//settings
+//settings profile
 Route::get('settings/profile','SettingsController@profile')->name('profile');
 Route::get('settings/profile/edit','SettingsController@editProfile')->name('profile.edit');
 Route::post('settings/profile','SettingsController@updateProfile')->name('profile.update');
+
+// setting password
+Route::get('settings/password/edit','SettingsController@editpassword')->name('password.edit');
+Route::post('settings/password','SettingsController@updatepassword')->name('password.update');
 
 Auth::routes();
 
