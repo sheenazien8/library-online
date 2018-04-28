@@ -49,6 +49,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('members.index')}}">Members</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('statistics.index')}}">Borrowed History</a>
+                  </li>
                 @endrole
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('profile')}}">Profile</a>
