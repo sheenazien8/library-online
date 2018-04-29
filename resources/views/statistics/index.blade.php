@@ -7,12 +7,12 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Statistic</li>
+              <li class="breadcrumb-item active" aria-current="page">Borrowed Books</li>
             </ol>
           </nav>
           <div class="card">
             <div class="card-header">
-              Statistics
+              History of borrowed books
             </div>
 
             <div class="card-body">

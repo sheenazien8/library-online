@@ -19,7 +19,7 @@
             </div>
             
             <div class="card-body">
-              <form class="form-horizontal" action="{{ route('export.books.post') }}" method="post" enctype="multipart/form-data">
+              <form class="form-horizontal" action="{{ route('export.books.post') }}" method="post" enctype="multipart/form-data" target="blank">
                 @csrf
 
                 <div class="form-group">
@@ -44,8 +44,35 @@
                 </div>
 
                 <div class="form-group">
+
+                  <div class="col-md-6">
+                    <div class="radio">
+                      <label for="type" class="form-label">Chosse Output
+                        {{-- <div class="invalid-feedback">
+                          {{$errors->has('type') ? 'required' : ''}}
+                        </div> --}}
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="type" value="xls">Excel </label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="type" value="pdf"> PDF </label>
+                    </div>
+                  </div>
+                    
+
+
+                    @if ($errors->has('type'))
+                      <span class="invalid-feedback">
+                        <strong>{{$errors->first('type')}}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
                   <div class="col-md-4 col-md-offset-2">
-                    <button type="submit" class="btn btn-primary">Save!</button>
+                    <button type="submit" class="btn btn-primary">Download!</button>
                   </div>
                 </div>
               </form>

@@ -14,7 +14,7 @@
             <div class="card-header">
               Books
               <a href="{{ route('books.create') }}" class="btn btn-primary float-right">+ Add</a>
-              <a href="{{ route('export.books.xls') }}" class="btn btn-primary float-right">Export</a>
+              <a href="{{ route('export.books') }}" class="btn btn-primary float-right">Export</a>
             </div>
 
             <div class="card-body">

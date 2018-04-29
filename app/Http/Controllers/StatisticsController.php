@@ -19,10 +19,11 @@ class StatisticsController extends Controller
     return DataTables::of($statistics)
             ->addColumn('returned_at', function($statistic){
               if ($statistic->is_returned) {
-              	return $statistic->updated_at->format('d-m-Y');
-              }
 
-              return "<span class='text-primary'>Masih dipinjam </span>";
+              	return $statistic->updated_at->format('d-m-Y');
+              }else{
+                return "<span class='text-primary'>Masih dipinjam </span>";
+              }
             })->rawColumns(['returned_at'])
             ->toJson();
   }
