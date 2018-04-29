@@ -50,7 +50,7 @@
                     <a class="nav-link" href="{{route('members.index')}}">Members</a>
                   </li>
                   <li class="nav-item {{ Route::is('statistics.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('statistics.index')}}">Borrowed History</a>
+                    <a class="nav-link" href="{{route('statistics.index')}}">Borrowed Books</a>
                   </li>
                 @endrole
                   <li class="nav-item {{ Route::is('profile') ? 'active' : '' }}">
