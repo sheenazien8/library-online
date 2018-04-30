@@ -26,7 +26,7 @@
                     <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'is_invalid' : '' }}" >
 
                     @if ($errors->has('name'))
-                      <span class="invalied-feedback">
+                      <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
                       </span>
                     @endif
@@ -40,7 +40,7 @@
                       <input type="email" id="email" name="email" class="form-control {{ $errors->has('email') ? 'is_invalid' : '' }}">
 
                       @if ($errors->has('email'))
-                        <span class="invalied-feedback">
+                        <span class="invalid-feedback">
                           <strong>{{ $errors->first('email') }}</strong>
                         </span>
                       @endif

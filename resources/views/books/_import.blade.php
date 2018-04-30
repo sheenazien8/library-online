@@ -10,10 +10,10 @@
     <label for="file" class="col-sm-4 col-form-label-md-right">Pilih File</label>
 
       <div class="col-md-6">
-        <input type="file" id="excel" name="excel" class="form-control {{ $errors->has('excel') ? 'is_invalid' : '' }}" value="{{ old('excel') }}">
+        <input type="file" id="excel" name="excel" class="form-control {{ $errors->has('excel') ? 'is-invalid' : '' }}" value="{{ old('excel') }}">
 
         @if ($errors->has('excel'))
-          <span class="invalied-feedback"> 
+          <span class="invalid-feedback"> 
             <strong>{{ $errors->first('excel') }}</strong>
           </span>
         @endif
@@ -21,7 +21,7 @@
     </div>
 
     <div class="form-group-row">
-      <div class="col-sm-4"></div>
+      <div class="col-md-4"></div>
       <div class="col-md-6">
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
